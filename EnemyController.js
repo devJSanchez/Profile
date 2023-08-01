@@ -47,7 +47,7 @@ export default class EnemyController {
                         break;
                     }
                 }
-            }
+            } 
     }
     moveDown(newDirection){
         this.xVelocity=0;
