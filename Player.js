@@ -11,9 +11,26 @@ export default class Player{
         this.image = new Image();
         this.image.src = "images/player.png";
 
-        document.addEventListener("keydown")
+        document.addEventListener("keydown",this.keydown);
+        document.addEventListener("keyup",this.keyup);
     }
     draw(ctx){
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height);
     }
+   keydown = event => {
+        if(event.code == 'ArrowRight'){
+            this.rightPressed = true;
+        }
+        if(event.code == 'ArrowLeft'){
+            this.leftPressed = true;
+        }
+   }
+   keyup = event => {
+    if(event.code == 'ArrowRight'){
+        this.rightPressed = false;
+    }
+    if(event.code == 'ArrowLeft'){
+        this.leftPressed = false;
+    }
+}
 }
