@@ -26,8 +26,22 @@ export default class EnemyController {
         this.createEnemies();
     }
     draw(ctx){
+        this.decrementMoveDownTimer();
         this.updateVelocityAndDirection();
         this.drawEnemies(ctx);
+        this.resetMoveDownTimer();
+        
+    }
+    resetMoveDownTimer(){
+        if(this.moveDownTimer <= 0){
+            this.moveDownTimer = this.moveDownTimerDefault;
+        }
+    }
+    decrementMoveDownTimer(){
+        if(this.currentDirection === MovingDirection.downLeft ||
+             this.currentDirection === MovingDirection.downRight){
+                this.moveDownTimer--;
+        }
     }
     updateVelocityAndDirection(){
             for(const enemyRow of this.enemyRows){
@@ -46,6 +60,18 @@ export default class EnemyController {
                     if(this.moveDown(MovingDirection.left)){
                         break;
                     }
+                } else if(this.currentDirection === MovingDirection.left){
+                    this.xVelocity = -this.defaultXVelocity;
+                    this.yVelocity = 0;
+                    const leftMostEnemy = enemyRow[0];
+                    if(leftMostEnemy.x <= 0){
+                        this.currentDirection = MovingDirection.downRight;
+                        break;
+                    }
+                    }else if(this.currentDirection === MovingDirection.downRight){
+                        if(this.moveDown(MovingDirection.right)){
+                            break;
+                        }
                 }
             } 
     }
