@@ -243,12 +243,6 @@ body{
     left: calc(100% - 140px); /* Ajusta el valor '200px' al ancho de tu imagen */
   }
 }
-.starRtoL{
-  font-size: 100px;
-  position: absolute;
-  animation: moverImagen 5s linear forwards;
-}
-
 @keyframes moverImagen {
   0% {
     right: 0;
